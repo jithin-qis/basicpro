@@ -1,0 +1,24 @@
+{% extends 'myapp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        {% for i in products %}
+        <div class="col-sm-3 text-center">
+            <img src="{{ i.image.url }}" alt="image not found" width="90%">
+            <p>{{i.title}}</p>
+            <p>{{i.price}}</p>
+            <p>{{i.created}}</p>
+            <p>
+                <a href="{% url 'delete_product' i.id %}">
+                    <button class="btn btn-danger">Delete</button>
+                </a>
+                <a href="{% url 'product_update' i.id %}">
+                    <button class="btn btn-warning">Edit</button>
+                </a>
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
